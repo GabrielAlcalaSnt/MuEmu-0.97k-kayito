@@ -179,6 +179,8 @@ public:
 
 	void GiveUserRewardMoney(DEVIL_SQUARE_LEVEL* lpLevel);
 
+	void GiveUserRewardItem(DEVIL_SQUARE_LEVEL* lpLevel);
+
 	bool AddMonster(DEVIL_SQUARE_LEVEL* lpLevel, int aIndex);
 
 	bool DelMonster(DEVIL_SQUARE_LEVEL* lpLevel, int aIndex);

@@ -1258,6 +1258,10 @@ DWORD CItem::ItemValue(ITEM* ip, int goldType)
 
 DWORD CItem::ConvertRepairGold(int Gold, int Durability, int MaxDurability, short Type, char* Text)
 {
+	float m_Durability = (float)Durability;
+
+	float m_BaseDurability = (float)MaxDurability;
+
 	int RepairMoney = 0;
 
 	RepairMoney = Gold / 3;
@@ -1272,9 +1276,9 @@ DWORD CItem::ConvertRepairGold(int Gold, int Durability, int MaxDurability, shor
 
 	float sq2 = sqrt(sq1);
 
-	float value = ((((3.0f * sq1) * sq2) * (1.0f - ((float)Durability / (float)MaxDurability))) + 1.0f);
+	float value = ((((3.0f * sq1) * sq2) * (1.0f - (m_Durability / m_BaseDurability))) + 1.0f);
 
-	if ((float)Durability <= 0)
+	if (m_Durability <= 0)
 	{
 		value *= 1.4f;
 	}

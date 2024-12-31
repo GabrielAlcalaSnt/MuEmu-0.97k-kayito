@@ -2,6 +2,7 @@
 #include "DevilSquare.h"
 #include "DSProtocol.h"
 #include "EventSpawnMonster.h"
+#include "ItemBagManager.h"
 #include "Map.h"
 #include "ReadScript.h"
 #include "Message.h"
@@ -551,6 +552,8 @@ void CDevilSquare::SetState_CLEAN(DEVIL_SQUARE_LEVEL* lpLevel)
 
 	this->GiveUserRewardMoney(lpLevel);
 
+	this->GiveUserRewardItem(lpLevel);
+
 	this->GCDevilSquareScoreSend(lpLevel);
 
 	lpLevel->RemainTime = this->m_CloseTime * 60;
@@ -980,6 +983,64 @@ void CDevilSquare::GiveUserRewardMoney(DEVIL_SQUARE_LEVEL* lpLevel)
 		}
 
 		GCMoneySend(lpLevel->User[n].Index, gObj[lpLevel->User[n].Index].Money);
+	}
+}
+
+void CDevilSquare::GiveUserRewardItem(DEVIL_SQUARE_LEVEL* lpLevel)
+{
+	int aIndex = -1;
+
+	for (int n = 0; n < MAX_DS_USER; n++)
+	{
+		if (OBJECT_RANGE(lpLevel->User[n].Index) == 0)
+		{
+			continue;
+		}
+
+		if (lpLevel->User[n].Rank != 0)
+		{
+			continue;
+		}
+
+		aIndex = lpLevel->User[n].Index;
+
+		break;
+	}
+
+	if (aIndex == -1)
+	{
+		return;
+	}
+
+	switch (lpLevel->Level)
+	{
+		case 0:
+		{
+			gItemBagManager.DropItemBySpecialValue(ITEM_BAG_DEVIL_SQUARE1, &gObj[aIndex], gObj[aIndex].Map, gObj[aIndex].X, gObj[aIndex].Y);
+
+			break;
+		}
+
+		case 1:
+		{
+			gItemBagManager.DropItemBySpecialValue(ITEM_BAG_DEVIL_SQUARE2, &gObj[aIndex], gObj[aIndex].Map, gObj[aIndex].X, gObj[aIndex].Y);
+
+			break;
+		}
+
+		case 2:
+		{
+			gItemBagManager.DropItemBySpecialValue(ITEM_BAG_DEVIL_SQUARE3, &gObj[aIndex], gObj[aIndex].Map, gObj[aIndex].X, gObj[aIndex].Y);
+
+			break;
+		}
+
+		case 3:
+		{
+			gItemBagManager.DropItemBySpecialValue(ITEM_BAG_DEVIL_SQUARE4, &gObj[aIndex], gObj[aIndex].Map, gObj[aIndex].X, gObj[aIndex].Y);
+
+			break;
+		}
 	}
 }
 

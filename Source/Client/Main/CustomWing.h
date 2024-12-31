@@ -71,6 +71,8 @@ private:
 
 	static void CustomWingInventoryProcess_AllowInsertJewels();
 
+	static void CustomWingChaosMix_AddToPlusItemMix();
+
 	static void CustomWingIsHighValueItem_CheckWing();
 
 	static void CustomWingChangeCharacterExt();

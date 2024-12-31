@@ -374,7 +374,7 @@ int CItemManager::GetItemRepairMoney(CItem* lpItem, int type)
 		return 0;
 	}
 
-	if (ItemInfo.Durability == 0)
+	if (((lpItem->m_Index >= GET_ITEM(5, 0) && lpItem->m_Index < GET_ITEM(6, 0)) ? ItemInfo.MagicDurability : ItemInfo.Durability) == 0)
 	{
 		return 0;
 	}
@@ -3159,12 +3159,12 @@ void CItemManager::CGItemSellRecv(PMSG_ITEM_SELL_RECV* lpMsg, int aIndex)
 
 void CItemManager::CGItemRepairRecv(PMSG_ITEM_REPAIR_RECV* lpMsg, int aIndex)
 {
-	LPOBJ lpObj = &gObj[aIndex];
-
 	if (gObjIsConnectedGP(aIndex) == 0)
 	{
 		return;
 	}
+
+	LPOBJ lpObj = &gObj[aIndex];
 
 	PMSG_ITEM_REPAIR_SEND pMsg;
 

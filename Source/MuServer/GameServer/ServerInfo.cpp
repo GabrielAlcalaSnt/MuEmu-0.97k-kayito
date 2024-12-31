@@ -746,6 +746,14 @@ void CServerInfo::ReadChaosMixInfo(char* section, char* path)
 	this->m_Wing2MixAddItemRate[2] = GetPrivateProfileInt(section, "Wing2MixAddItemRate_AL2", 0, path);
 
 	this->m_Wing2MixAddItemRate[3] = GetPrivateProfileInt(section, "Wing2MixAddItemRate_AL3", 0, path);
+
+	this->m_Wing2CustomMixRate[0] = GetPrivateProfileInt(section, "Wing2CustomMixRate_AL0", 0, path);
+
+	this->m_Wing2CustomMixRate[1] = GetPrivateProfileInt(section, "Wing2CustomMixRate_AL1", 0, path);
+
+	this->m_Wing2CustomMixRate[2] = GetPrivateProfileInt(section, "Wing2CustomMixRate_AL2", 0, path);
+
+	this->m_Wing2CustomMixRate[3] = GetPrivateProfileInt(section, "Wing2CustomMixRate_AL3", 0, path);
 }
 
 void CServerInfo::ReadCharacterInfo(char* section, char* path)

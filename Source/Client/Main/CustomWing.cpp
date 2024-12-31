@@ -133,6 +133,8 @@ void CCustomWing::Init()
 
 	SetCompleteHook(0xE9, 0x004DE955, &this->CustomWingInventoryProcess_AllowInsertJewels);
 
+	SetCompleteHook(0xE9, 0x004E4211, &this->CustomWingChaosMix_AddToPlusItemMix);
+
 	SetCompleteHook(0xE9, 0x004E02E3, &this->CustomWingIsHighValueItem_CheckWing);
 
 	SetCompleteHook(0xE9, 0x0045C976, &this->CustomWingChangeCharacterExt);
@@ -695,6 +697,45 @@ EXIT:
 	{
 		Popad;
 		Jmp[jmpOnNot];
+	}
+}
+
+_declspec(naked) void CCustomWing::CustomWingChaosMix_AddToPlusItemMix()
+{
+	static DWORD jmpOnOk = 0x004E4218;
+	static DWORD jmpOnNot = 0x004E4244;
+
+	static int ItemIndex;
+
+	_asm
+	{
+		Pushad;
+		Movsx Edx, Dx;
+		Mov ItemIndex, Edx;
+	}
+
+	if (gCustomWing.GetInfoByIndex(ItemIndex) != NULL)
+	{
+		goto EXIT;
+	}
+
+	if (ItemIndex <= GET_ITEM(12, 6))
+	{
+		goto EXIT;
+	}
+
+	_asm
+	{
+		Popad;
+		Jmp[jmpOnNot];
+	}
+
+EXIT:
+
+	_asm
+	{
+		Popad;
+		Jmp[jmpOnOk];
 	}
 }
 
