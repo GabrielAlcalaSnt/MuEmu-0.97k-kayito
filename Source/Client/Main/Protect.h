@@ -8,6 +8,7 @@
 #include "CustomBow.h"
 #include "CustomWing.h"
 #include "ItemPosition.h"
+#include "MapFog.h"
 
 struct MAIN_FILE_INFO
 {
@@ -39,6 +40,7 @@ struct MAIN_FILE_INFO
 	ITEM_OPTION_INFO ItemOptionInfo[MAX_ITEM_OPTION_INFO];
 	CUSTOM_MONSTER_INFO CustomMonsterInfo[MAX_MONSTER];
 	ITEM_POSITION_INFO ItemPositionInfo[MAX_ITEM];
+	MAP_FOG_INFO MapFogInfo[MAX_MAPS];
 
 };
 

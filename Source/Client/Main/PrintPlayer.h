@@ -115,6 +115,8 @@ public:
 	DWORD ViewDefenseSuccessRate;
 
 	DWORD MaxCharacterLevel;
+
+	DWORD MaxCharacterDeleteLevel;
 };
 
 extern CPrintPlayer gPrintPlayer;

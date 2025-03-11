@@ -481,6 +481,8 @@ void DGCharacterListRecv(SDHP_CHARACTER_LIST_RECV* lpMsg)
 
 	DataSend(lpMsg->index, send, size);
 
+	GCCharacterDeleteLevelSend(lpMsg->index, gServerInfo.m_CharacterDeleteMaxLevel[gObj[lpMsg->index].AccountLevel]);
+
 	GCCharacterCreationEnableSend(lpMsg->index, gObj[lpMsg->index].ClassCode);
 
 	GCCharacterMaxLevelSend(lpMsg->index, gServerInfo.m_MaxCharacterLevel);

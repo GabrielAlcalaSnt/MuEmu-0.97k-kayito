@@ -146,6 +146,8 @@ public:
 	int m_PlusStatPoint;
 	int m_CharacterCreateSwitch;
 	int m_MGCreateLevel[MAX_ACCOUNT_LEVEL];
+	int m_CharacterDeleteSwitch;
+	int m_CharacterDeleteMaxLevel[MAX_ACCOUNT_LEVEL];
 	int m_PartyLevelDifference;
 	int m_PartyReconnectTime;
 	int m_PartyGeneralExperience[MAX_PARTY_USER];

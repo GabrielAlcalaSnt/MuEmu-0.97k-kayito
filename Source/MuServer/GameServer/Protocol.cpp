@@ -1329,6 +1329,11 @@ void CGCharacterDeleteRecv(PMSG_CHARACTER_DELETE_RECV* lpMsg, int aIndex)
 		return;
 	}
 
+	if (gServerInfo.m_CharacterDeleteSwitch == 0)
+	{
+		return;
+	}
+
 	PMSG_CHARACTER_DELETE_SEND pMsg;
 
 	pMsg.header.set(0xF3, 0x02, sizeof(pMsg));
@@ -1861,6 +1866,17 @@ void GCRewardExperienceSend(int aIndex, int experience)
 	pMsg.ViewNextExperience = gObj[aIndex].NextExperience;
 
 #endif
+
+	DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
+}
+
+void GCCharacterDeleteLevelSend(int aIndex, WORD Level)
+{
+	PMSG_CHARACTER_DELETE_LEVEL_SEND pMsg;
+
+	pMsg.header.set(0xDD, sizeof(pMsg));
+
+	pMsg.Level = Level;
 
 	DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
 }

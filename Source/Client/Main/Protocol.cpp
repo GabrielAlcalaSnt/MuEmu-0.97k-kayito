@@ -185,6 +185,13 @@ bool CProtocol::TranslateProtocol(BYTE head, BYTE* lpMsg, int Size)
 			break;
 		}
 
+		case 0x3C:
+		{
+			this->GCTradeOkButtonRecv((PMSG_TRADE_OK_BUTTON_RECV*)lpMsg);
+
+			return true;
+		}
+
 		case 0x87:
 		{
 			gChaosMix.Clear();
@@ -289,6 +296,13 @@ bool CProtocol::TranslateProtocol(BYTE head, BYTE* lpMsg, int Size)
 			this->GCQuestRewardRecv((PMSG_QUEST_REWARD_RECV*)lpMsg);
 
 			break;
+		}
+
+		case 0xDD:
+		{
+			this->GCCharacterDeleteMaxLevelRecv((PMSG_CHARACTER_DELETE_LEVEL_RECV*)lpMsg);
+
+			return true;
 		}
 
 		case 0xDE:
@@ -634,6 +648,44 @@ void CProtocol::GCFruitResultRecv(PMSG_FRUIT_RESULT_RECV* lpMsg)
 	}
 }
 
+void CProtocol::GCTradeOkButtonRecv(PMSG_TRADE_OK_BUTTON_RECV* lpMsg)
+{
+	switch (lpMsg->flag)
+	{
+		case 0: // The transaction decision button was pressed.
+		{
+			m_bYourConfirm = false;
+
+			break;
+		}
+
+		case 1: // Cancel transaction decision.
+		{
+			m_bYourConfirm = true;
+
+			break;
+		}
+
+		case 2: // Temporarily unavailable to exchange (warning that the opponent has moved in the trading window)
+		{
+			m_bMyConfirm = false;
+
+			m_bYourConfirm = false;
+
+			m_nMyTradeWait = 150;
+
+			break;
+		}
+
+		case 3: // The non-exchange status is released for a while.
+		{
+			break;
+		}
+	}
+
+	PlayBuffer(25, NULL, FALSE);
+}
+
 void CProtocol::GCDevilSquareRequiredLevelsRecv(PMSG_DEVIL_SQUARE_REQ_LEVELS_RECV* lpMsg)
 {
 	for (int Level = 0; Level < 4; Level++)
@@ -675,6 +727,11 @@ void CProtocol::GCQuestRewardRecv(PMSG_QUEST_REWARD_RECV* lpMsg)
 	{
 		gPrintPlayer.ViewPoint = lpMsg->ViewPoint;
 	}
+}
+
+void CProtocol::GCCharacterDeleteMaxLevelRecv(PMSG_CHARACTER_DELETE_LEVEL_RECV* lpMsg)
+{
+	gPrintPlayer.MaxCharacterDeleteLevel = lpMsg->Level;
 }
 
 void CProtocol::GCCharacterCreationEnableRecv(PMSG_CHARACTER_CREATION_ENABLE_RECV* lpMsg)

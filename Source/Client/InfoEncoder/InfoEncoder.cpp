@@ -8,6 +8,7 @@
 #include "CustomBow.h"
 #include "CustomWing.h"
 #include "ItemPosition.h"
+#include "MapFog.h"
 
 struct MAIN_FILE_INFO
 {
@@ -39,6 +40,7 @@ struct MAIN_FILE_INFO
 	ITEM_OPTION_INFO ItemOptionInfo[MAX_ITEM_OPTION_INFO];
 	CUSTOM_MONSTER_INFO CustomMonsterInfo[MAX_MONSTER];
 	ITEM_POSITION_INFO ItemPositionInfo[MAX_ITEM];
+	MAP_FOG_INFO MapFogInfo[MAX_MAPS];
 };
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -104,6 +106,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	gItemPosition.Load("ItemPosition.txt");
 
+	gMapFog.Load("MapFog.txt");
+
 	/*****************************************************************/
 	/*********************** Load struct files ***********************/
 	/*****************************************************************/
@@ -123,6 +127,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	memcpy(info.CustomMonsterInfo, gCustomMonster.m_CustomMonsterInfo, sizeof(info.CustomMonsterInfo));
 
 	memcpy(info.ItemPositionInfo, gItemPosition.m_ItemPositionInfo, sizeof(info.ItemPositionInfo));
+
+	memcpy(info.MapFogInfo, gMapFog.m_MapFog, sizeof(info.MapFogInfo));
 
 	/*=================================================================*/
 

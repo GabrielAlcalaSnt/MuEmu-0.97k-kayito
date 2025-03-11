@@ -67,6 +67,8 @@ CPrintPlayer::CPrintPlayer()
 	this->ViewDefenseSuccessRate = 0;
 
 	this->MaxCharacterLevel = MAX_CHARACTER_LEVEL;
+
+	this->MaxCharacterDeleteLevel = 220;
 }
 
 CPrintPlayer::~CPrintPlayer()

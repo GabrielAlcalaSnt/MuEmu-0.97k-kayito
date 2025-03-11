@@ -1420,6 +1420,16 @@ void CServerInfo::ReadCommonInfo(char* section, char* path)
 
 	this->m_MGCreateLevel[3] = GetPrivateProfileInt(section, "MGCreateLevel_AL3", 0, path);
 
+	this->m_CharacterDeleteSwitch = GetPrivateProfileInt(section, "CharacterDeleteSwitch", 0, path);
+
+	this->m_CharacterDeleteMaxLevel[0] = GetPrivateProfileInt(section, "CharacterDeleteMaxLevel_AL0", 0, path);
+
+	this->m_CharacterDeleteMaxLevel[1] = GetPrivateProfileInt(section, "CharacterDeleteMaxLevel_AL1", 0, path);
+
+	this->m_CharacterDeleteMaxLevel[2] = GetPrivateProfileInt(section, "CharacterDeleteMaxLevel_AL2", 0, path);
+
+	this->m_CharacterDeleteMaxLevel[3] = GetPrivateProfileInt(section, "CharacterDeleteMaxLevel_AL3", 0, path);
+
 	this->m_PartyLevelDifference = GetPrivateProfileInt(section, "PartyLevelDifference", 0, path);
 
 	this->m_PartyReconnectTime = GetPrivateProfileInt(section, "PartyReconnectTime", 0, path);

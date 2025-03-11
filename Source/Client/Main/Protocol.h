@@ -93,6 +93,12 @@ struct PMSG_FRUIT_RESULT_RECV
 	DWORD ViewEnergy;
 };
 
+struct PMSG_TRADE_OK_BUTTON_RECV
+{
+	PBMSG_HEAD header; // C1:3C
+	BYTE flag;
+};
+
 struct PMSG_DEVIL_SQUARE_REQ_LEVELS_RECV
 {
 	PBMSG_HEAD header; // C1:8E
@@ -125,6 +131,12 @@ struct PMSG_QUEST_REWARD_RECV
 	BYTE QuestAmount;
 	// Extra
 	DWORD ViewPoint;
+};
+
+struct PMSG_CHARACTER_DELETE_LEVEL_RECV
+{
+	PBMSG_HEAD header; // C1:DD
+	WORD Level;
 };
 
 struct PMSG_CHARACTER_CREATION_ENABLE_RECV
@@ -421,6 +433,8 @@ private:
 
 	void GCFruitResultRecv(PMSG_FRUIT_RESULT_RECV* lpMsg);
 
+	void GCTradeOkButtonRecv(PMSG_TRADE_OK_BUTTON_RECV* lpMsg);
+
 	void GCDevilSquareRequiredLevelsRecv(PMSG_DEVIL_SQUARE_REQ_LEVELS_RECV* lpMsg);
 
 	void GCBloodCastleRequiredLevelsRecv(PMSG_BLOOD_CASTLE_REQ_LEVELS_RECV* lpMsg);
@@ -428,6 +442,8 @@ private:
 	void GCRewardExperienceRecv(PMSG_REWARD_EXPERIENCE_RECV* lpMsg);
 
 	void GCQuestRewardRecv(PMSG_QUEST_REWARD_RECV* lpMsg);
+
+	void GCCharacterDeleteMaxLevelRecv(PMSG_CHARACTER_DELETE_LEVEL_RECV* lpMsg);
 
 	void GCCharacterCreationEnableRecv(PMSG_CHARACTER_CREATION_ENABLE_RECV* lpMsg);
 

@@ -12,7 +12,7 @@ public:
 
 private:
 
-	static void ReduceCPU();
+	static DWORD ReduceCPU();
 
 	static void ReduceRam(LPVOID lpThreadParameter);
 
@@ -45,6 +45,8 @@ private:
 	static void RenderBrokenItem(int PosY);
 
 	static bool CheckSpecialText(char* Text);
+
+	static void SetCharacterDeleteMaxLevel();
 
 	static void SendContinueDeathStab();
 

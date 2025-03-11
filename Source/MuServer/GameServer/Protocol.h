@@ -328,6 +328,12 @@ struct PMSG_MOVE_SEND
 	BYTE dir;
 };
 
+struct PMSG_CHARACTER_DELETE_LEVEL_SEND
+{
+	PBMSG_HEAD header; // C1:DD
+	WORD Level;
+};
+
 struct PMSG_CHARACTER_CREATION_ENABLE_SEND
 {
 	PBMSG_HEAD header; // C1:DE
@@ -688,6 +694,8 @@ void GCGuildMasterQuestionSend(int aIndex);
 void GCMonsterDieSend(int aIndex, int bIndex, int experience, int damage, BYTE flag);
 
 void GCRewardExperienceSend(int aIndex, int experience);
+
+void GCCharacterDeleteLevelSend(int aIndex, WORD Level);
 
 void GCCharacterCreationEnableSend(int aIndex, BYTE result);
 
